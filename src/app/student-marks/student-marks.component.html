@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Marks</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      width: 80%;
+      max-width: 600px;
+      text-align: center;
+    }
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    select {
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    .btn-danger {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      margin-top: 20px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .btn-danger:hover {
+      background-color: #a71d2a;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 class="text-center">Welcome {{ studentName }}</h2> 
+    <h2>My Marks</h2>
+
+    <div class="filters">
+      <select [(ngModel)]="selectedMonth" (change)="filterMarks()">
+        <option value="">Select Month</option>
+        <option *ngFor="let month of uniqueMonths" [value]="month">{{ month }}</option>
+      </select>
+
+      <select [(ngModel)]="selectedYear" (change)="filterMarks()">
+        <option value="">Select Year</option>
+        <option *ngFor="let year of uniqueYears" [value]="year">{{ year }}</option>
+      </select>
+    </div>
+
+    <table *ngIf="filteredMarks.length > 0">
+      <tr>
+        <th>Month</th>
+        <th>Year</th>
+        <th>Subject</th>
+        <th>Score</th>
+      </tr>
+      <tr *ngFor="let mark of filteredMarks">
+        <td>{{ mark.month }}</td>
+        <td>{{ mark.year }}</td>
+        <td>{{ mark.sub_name }}</td>
+        <td>{{ mark.score }}</td>
+      </tr>
+    </table>
+
+    <p *ngIf="filteredMarks.length === 0 && selectedMonth && selectedYear">
+      No marks available for the selected Month and Year.
+    </p>
+
+    <button (click)="logout()" class="btn btn-danger">Logout</button>
+  </div>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<div class="dashboard-container">
+  
+  <!-- Sidebar -->
+  <div class="sidebar">
+    
+    <a (click)="changeSection('dashboard')">Dashboard</a>
+    <a (click)="selectedSection = 'manageUsers'">Manage Users</a>
+    <a (click)="changeSection('manageStudents')">Manage Students</a>
+    <a (click)="logout()">Logout</a>
+  </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content">
+    <div class="dashboard-header">
+      <div class="welcome-text">
+        Welcome {{ userName }}
+      </div>
+    </div>
+
+
+<!-- Dashboard Section -->
+<div *ngIf="selectedSection === 'dashboard'">
+  <div class="dashboard-container">
+    <div class="filter-box" style="display: flex; align-items: center; gap: 15px;">
+      <label for="month"><strong>Select Month:</strong></label>
+      <select id="month" [(ngModel)]="selectedMonth">
+        <option value="">Select Month</option>
+        <option *ngFor="let month of months" [value]="month.id">
+          {{ month.name }}
+        </option>
+      </select>
+
+      <label for="year"><strong>Enter Year:</strong></label>
+      <input id="year" type="number" placeholder="YYYY" [(ngModel)]="selectedYear" />
+
+      <button (click)="fetchDashboardData()">Fetch Data</button>
+    </div>
+  </div>
+
+  <!-- Dashboard Statistics -->
+  <div class="dashboard-stats" *ngIf="dashboardData">
+    <h3>Dashboard Statistics</h3>
+    <p><strong>Total Students:</strong> {{ dashboardData.totalStudents }}</p>
+
+    <h4>Average Marks by Subject</h4>
+    <ul>
+      <li *ngFor="let subject of dashboardData.avgMarks">
+        {{ subject.sub_name }}: {{ subject.average_marks | number: '1.0-2' }}
+      </li>
+    </ul>
+
+    <h4>Top Students by Subject</h4>
+    <ul>
+      <li *ngFor="let student of dashboardData.topStudents">
+        {{ student.sub_name }} - {{ student.student_name }} ({{ student.score }})
+      </li>
+    </ul>
+  </div>
+</div>
+
+<br>
+
+    <!-- Manage Users Section -->
+<div *ngIf="selectedSection === 'manageUsers'">
+  <div class="manage-users">
+    <h2>User Management</h2>
+<div class="user-buttons">
+    <!-- Buttons to switch between Add and Delete User -->
+    <button (click)="selectedAction = 'add'">Add User</button>
+    <button (click)="selectedAction = 'delete'">Delete User</button>
+</div>
+    <!-- Add User Form -->
+    <div *ngIf="selectedAction === 'add'">
+      <h3>Add New User</h3>
+      <form [formGroup]="userForm" (ngSubmit)="addUser()" autocomplete="off">
+        <label for="id">Id:</label>
+        <input id="id" formControlName="id" type="text" required autocomplete="off" />
+
+        <label for="username">Username:</label>
+        <input id="username" formControlName="username" type="text" required autocomplete="off" />
+
+        <label for="password">Password:</label>
+        <input id="password" formControlName="password" type="password" required autocomplete="new-password" />
+
+        <label for="role">Role:</label>
+        <select id="role" formControlName="role">
+          <option value="admin">Admin</option>
+          <option value="user">User</option>
+          <option value="student">Student</option>
+          <option value="teacher">Teacher</option>
+        </select>
+
+        <button type="submit">Add User</button>
+      </form>
+    </div>
+
+    <!-- Delete User List -->
+    <div *ngIf="selectedAction === 'delete'">
+      <h3>Delete Users</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Role</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{ user.id }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.role }}</td>
+            <td>
+              <button class="delete-btn" (click)="deleteUser(user.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+    
+
+
+  <!-- Main Content -->
+  <div class="content">
+    <!-- Manage Students Section -->
+    <div *ngIf="selectedSection === 'manageStudents'">
+      <div class="manage-students">
+        <h2>Manage Students</h2>
+
+        <!-- Toggle Form Button -->
+        <button *ngIf="role === 'admin'" class="btn-add" (click)="toggleAddStudent()">
+          {{ showAddStudentForm ? 'Close Form' : 'Add Student' }}
+        </button>
+
+        <!-- ✅ Add Student Form (Includes Student ID) -->
+        <div *ngIf="showAddStudentForm" class="add-student-container">
+          <div class="add-student-container">
+            <h3>Add Student</h3>
+            <form [formGroup]="studentForm" (ngSubmit)="addStudent()">
+              <div class="form-group">
+                <label for="student_id">Student ID:</label>
+                <input id="student_id" formControlName="student_id" type="text" required />
+              </div>
+              <div class="form-group">
+                <label for="name">Student Name:</label>
+                <input id="name" formControlName="name" type="text" required />
+              </div>
+              <button type="submit" [disabled]="studentForm.invalid">Add Student</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- ✅ Student List with Student ID -->
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th *ngIf="role === 'admin'">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let student of students">
+              <td>{{ student.student_id }}</td>
+              <td>{{ student.name }}</td>
+              <td *ngIf="role === 'admin'">
+                <div class="button-group">
+                <button class="btn-delete" (click)="deleteStudent(student.student_id)">Delete</button>
+                
+                <button class="btn-edit" (click)="toggleEditStudent(student)">Edit</button>
+              </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- ✅ Show Edit Student Form only when editing a student -->
+<div *ngIf="showEditStudentForm">
+  <h3>Edit Student</h3>
+  <form [formGroup]="editStudentForm" (ngSubmit)="updateStudent()">
+    <div class="form-group">
+      <label for="edit-student_id">Student ID:</label>
+      <input id="edit-student_id" formControlName="student_id" type="text" readonly />
+    </div>
+    <div class="form-group">
+      <label for="edit-name">Name:</label>
+      <input id="edit-name" formControlName="name" type="text" required />
+    </div>
+    <button type="submit" [disabled]="editStudentForm.invalid">Update</button>
+    <button type="button" (click)="showEditStudentForm = false">Cancel</button>
+  </form>
+</div>
+
+
+      </div>
+    </div>
+  </div>

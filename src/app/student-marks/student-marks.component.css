@@ -1,0 +1,8 @@
+.welcome-message {
+    width: 100%;
+    text-align: right;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #2c3e50;
+}

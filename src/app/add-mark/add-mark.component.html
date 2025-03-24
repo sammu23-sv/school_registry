@@ -1,0 +1,24 @@
+<div class="container">
+    <h2>Add New Mark</h2>
+
+    <label>Student ID:</label>
+    <input type="text" [(ngModel)]="studentId" placeholder="Enter Student ID">
+
+    <label>Subject:</label>
+    <select [(ngModel)]="subjectId">
+        <option *ngFor="let subject of subjects" [value]="subject.sub_id">
+            {{ subject.sub_name }}
+        </option>
+    </select>
+
+    <label>Month:</label>
+    <input type="text" [(ngModel)]="month" placeholder="Enter Month ">
+
+    <label>Year:</label>
+    <input type="text" [(ngModel)]="year" placeholder="Enter Year ">
+
+    <label>Score:</label>
+    <input type="number" [(ngModel)]="score" placeholder="Enter Score ">
+
+    <button (click)="addMark()">Submit</button>
+</div>

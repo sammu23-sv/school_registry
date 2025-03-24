@@ -1,0 +1,111 @@
+<div class="main-container">
+  <app-header></app-header>
+
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <ul>
+      <li><button (click)="changeSection('marks-management')">Dashboard</button></li>
+      <li><button (click)="changeSection('addStudent')">Add Student</button></li>
+      <li><button (click)="changeSection('fetchMarks')">Fetch Marks</button></li>
+      <li><button (click)="changeSection('addMark')">Add Marks</button></li>
+      <button (click)="logout()" class="logout-btn">Logout</button>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="content">
+    <div *ngIf="selectedSection === 'marks-management'" class="chart-container">
+      <h2>Marks Management</h2>
+      <h3>Top Students in Each Subject</h3>
+      <canvas id="marksChart"></canvas>
+    </div>
+
+    <!-- ✅ Add Student Section (Without newStudent) -->
+    <div *ngIf="selectedSection === 'addStudent'">
+      <h2>Add Student</h2>
+      <form (ngSubmit)="addStudent()">
+        <label for="studentName">Student Name:</label>
+        <input id="studentName" type="text" [(ngModel)]="studentName" name="studentName" required />
+
+        <button type="submit">Add Student</button>
+      </form>
+    </div>
+
+    <!-- ✅ Fetch Marks Section -->
+    <div *ngIf="selectedSection === 'fetchMarks'">
+      <h2>Fetch Marks</h2>
+      <label for="studentId">Enter Student ID:</label>
+  <input type="text" id="studentId" [(ngModel)]="studentId" placeholder="Enter Student ID" />
+
+      <button (click)="getStudentMarks()">Load Marks</button>
+
+      <table *ngIf="studentsMarks.length">
+        <thead>
+          <tr>
+            <th>SubId</th>
+            <th>Subject</th>
+            <th>Month</th>
+            <th>Year</th>
+            <th>Score</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let mark of studentsMarks">
+            <td>{{ mark.sub_id }}</td>
+            <td>{{ mark.subject }}</td>
+            <td>{{ mark.month }}</td>
+            <td>{{ mark.year }}</td>
+            <td><input type="number" [(ngModel)]="mark.score" min="0" max="100"></td>
+            
+            <td>
+              <div class="action-buttons">
+                <button (click)="updateMark(studentId, mark.sub_id, mark.score)">Update</button>
+                <button class="btn-danger" (click)="deleteMark(studentId, mark.sub_id)">Delete</button>
+              </div>
+            </td>
+          </tr>
+        
+        
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ✅ Add Marks Section -->
+    <div *ngIf="selectedSection === 'addMark'">
+      <h2>Add Marks</h2>
+      <form (ngSubmit)="addMark()">
+        <div class="form-group">
+        <label for="studentID">Student ID:</label>
+        <input id="studentID" type="text" [(ngModel)]="newMark.student_id" name="studentID" required />
+        </div>
+
+        <div class="form-group">
+        <label for="subject">Subject:</label>
+        <select id="subject" [(ngModel)]="newMark.sub_id" name="subject">
+          <option *ngFor="let subject of subjects" [value]="subject.id">{{ subject.name }}</option>
+        </select>
+        </div>
+
+        <div class="form-group">
+        <label for="month">Month:</label>
+        <input id="month" type="text" [(ngModel)]="newMark.month" name="month" required />
+        </div>
+
+        <div class="form-group">
+        <label for="year">Year:</label>
+        <input id="year" type="text" [(ngModel)]="newMark.year" name="year" required />
+        </div>
+
+
+        <div class="form-group">
+        <label for="score">Score:</label>
+        <input id="score" type="number" [(ngModel)]="newMark.score" name="score" min="0" max="100" required />
+        </div>
+        <br>
+
+        <button type="submit">Add Mark</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,358 @@
+/* Main Layout */
+.main-container {
+  display: flex;
+}
+
+/* Sidebar Styling */
+.sidebar {
+  width: 250px;
+  background-color: #333;
+  color: white;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 20px 10px; /* Added horizontal padding */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Ensure ul takes full width */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+/* Ensure buttons are aligned properly */
+.sidebar ul li {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* Style buttons properly */
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  font-size: 18px;
+  padding: 12px 0;
+  background-color: #28a745;
+  border-radius: 5px;
+  width: 90%; /* Adjusted width to add space */
+  margin: 0 auto; /* Centers button */
+  transition: background 0.3s;
+}
+
+/* Hover effect */
+.sidebar ul li a:hover {
+  background-color: #007bff;
+}
+
+/* Content Area */
+.content {
+  margin-left: 260px; /* Adjust to match sidebar width */
+  padding: 20px;
+  flex-grow: 1;
+  display:flex;
+  justify-content: center;
+}
+
+/* Sidebar Button Styling */
+.fetch-marks-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 0px;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.fetch-marks-btn:hover {
+  background-color: #218838;
+}
+
+/* Centered Container */
+.add-student-container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+/* Heading */
+h2 {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 24px;
+}
+
+/* Form Styling */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Input Fields */
+input {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s ease-in-out;
+}
+
+input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Label Styling */
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  text-align: left;
+  width: 100%;
+  max-width: 400px;
+  color: #555;
+}
+
+/* Button */
+button {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 5px;
+  transition: background 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .add-student-container {
+    width: 90%;
+  }
+
+  input, button {
+    max-width: 100%;
+  }
+}
+
+/* Wrapper for input and button */
+.fetch-marks-container {
+  display: flex;
+  align-items: center; /* Keep input and button aligned */
+  justify-content: start; /* Keep left-aligned */
+  margin-top: 20px;
+}
+
+/* Label Styling */
+.fetch-marks-container label {
+  font-weight: bold;
+  margin-right: 10px; /* Space between label and input */
+}
+
+/* Medium-Sized Input Field */
+.fetch-marks-container input {
+  width: 250px; /* Reduce width for medium size */
+  height: 35px;  /* Reduce height for medium size */
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px; /* Reduce font size */
+  position:center;
+}
+
+/* Medium-Sized Button */
+.fetch-marks-container button {
+  height: 40px; /* Adjust to match input */
+  background-color: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 14px; /* Slightly smaller font */
+  border-radius: 5px;
+  padding: 8px 16px; /* Reduce padding for medium size */
+  transition: background 0.3s ease-in-out;
+  margin-left: 12px; /* ✅ Adds spacing between input and button */
+}
+
+.fetch-marks-container button:hover {
+  background-color: #218838;
+}
+
+/* Flexbox for Buttons */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Space between buttons */
+}
+
+/* Adjust Button Sizing */
+button {
+  padding: 8px 12px;
+  font-size: 14px;
+  width: auto; /* Auto width to avoid full width */
+}
+
+#subject {
+  width: 100%; /* Ensures it matches input width */
+  padding: 8px; /* Makes it visually consistent */
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+
+
+
+
+
+
+
+
+/* Chart Styling */
+.chart-container {
+  width: 600px; /* Adjust width */
+  height: 300px; /* Adjust height */
+  margin: auto;
+}
+
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Form & Table Container */
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+/* Headings */
+h2, h3 {
+  text-align: center;
+  color: #333;
+}
+
+/* Labels & Inputs */
+label {
+  font-weight: bold;
+  display: block;
+  margin: 10px 0 5px;
+}
+
+input, select, button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Buttons */
+button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+/* Danger Button */
+.btn-danger {
+  background-color: #dc3545;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+/* Table Styling */
+table {
+  width: 70%; /* Adjusts table width */
+  margin: auto; /* Centers the table */
+  border-collapse: collapse;
+  font-size: 16px; /* Medium font size */
+}
+
+
+th, td {
+  padding: 8px; /* Reduce padding */
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+th {
+  background-color: #007bff;
+  color: white;
+}
+
+td input {
+  width: 60px; /* Smaller input field */
+  font-size: 14px;
+  padding: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+  .content {
+    margin-left: 0;
+  }
+
+  .chart-container {
+    width: 100%;
+    height: auto;
+  }
+
+  button {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  
+
+  
+}

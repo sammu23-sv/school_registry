@@ -1,0 +1,24 @@
+<div class="container">
+    <h2>Fetch Student Marks</h2>
+
+    <label for="studentId">Enter Student ID:</label>
+    <input type="text" id="studentId" [(ngModel)]="studentId" placeholder="Enter Student ID">
+
+    <button (click)="fetchMarks()">Fetch Marks</button>
+
+    <div *ngIf="studentsMarks.length > 0">
+        <h3>Student Marks:</h3>
+        <table border="1">
+            <tr>
+                <th>Subject</th>
+                <th>Marks</th>
+              
+            </tr>
+            <tr *ngFor="let mark of studentsMarks">
+                <td>{{ mark.subject || 'N/A' }}</td>  <!-- ✅ Shows Subject Name -->
+                <td>{{ mark.score }}</td>            <!-- ✅ Shows Marks -->
+                
+            </tr>
+        </table>
+    </div>
+</div>

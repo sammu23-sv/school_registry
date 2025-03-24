@@ -1,0 +1,427 @@
+/* General Page Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    height:100vh;
+}
+
+
+
+/* Dashboard Container */
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+    justify-content: space-between;
+    gap:20px;
+    background-color: #f4f4f4;
+}
+
+
+
+/* Sidebar Styling */
+.sidebar {
+    width: 250px;
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    top:0;
+    left:0;
+    height: 100vh;
+}
+
+.sidebar h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    margin: 10px 0px;
+    padding: 0px;
+    width: 100%;
+    display: block;
+    transition: background 0.3s;
+    border-radius: 5px;
+}
+
+.sidebar a:hover {
+    background-color: #1abc9c;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 10px 0;
+}
+
+/* Dashboard Content */
+.dashboard-main {
+    margin-top: 20px;
+}
+
+
+/* Welcome Text (Top Left Inside Main Content) */
+.welcome-text {
+    position: absolute; /* Keeps it positioned relative to the page */
+    top: 10px; /* Moves it to the top */
+    left: 300px; /* Pushes it outside the sidebar */
+    font-size: 20px;
+    font-weight: bold;
+    color: #2c3e50;
+    padding: 10px;
+    background-color: #ecf0f1;
+    border-radius: 5px;
+    display: inline-block;
+    z-index: 10; /* Ensures it stays above other elements */
+}
+
+
+
+/* Content area */
+.content {
+    flex-grow: 1;
+    padding: 10px; /* Reduce padding */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Keep items centered */
+    justify-content: flex-start;
+    height: 100vh; /* Ensures full height */
+    overflow: hidden; /* Prevents page scrolling */
+}
+
+/* Dropdown */
+.dropdown {
+    position: absolute;
+    left: 20px;
+    top: 50px;
+    background: #34495e;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    padding: 10px 0;
+    list-style: none;
+    width: 200px;
+    display: none;
+}
+
+/* Show dropdown on hover */
+.sidebar a:hover + .dropdown,
+.dropdown:hover {
+    display: block;
+}
+
+/* Dropdown item styling */
+.dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #34495e;
+    color: white;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-radius: 5px;
+    width: 150px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown li {
+    padding: 10px;
+}
+
+.dropdown li:hover {
+    background: #1abc9c;
+}
+
+.menu-item {
+    position: relative;
+    padding: 10px;
+    cursor: pointer;
+}
+
+
+
+
+.dashboard-stats {
+    position: absolute;
+    top: 80px; /* Position it closer to the top */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+}
+
+
+
+
+
+/* User Management Section */
+.manage-users {
+    background: white;
+    padding: 15px; /* Reduce padding to make it smaller */
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    
+    position: absolute;
+    top: 50%; /* Move it slightly lower */
+    left: 58%; /* Adjust to center it properly */
+    transform: translate(-50%, -50%);
+    
+    width: 30%; /* Reduce width for a smaller form */
+    min-width: 220px; /* Ensure it doesn't get too small */
+    font-size: 14px;
+}
+
+/* Space between Add User and Delete User buttons */
+.user-buttons {
+    display: flex;
+    gap: 15px; /* Adds space between buttons */
+    margin-top: 10px; /* Adds some space from the heading */
+}
+
+.manage-students{
+    background: white;
+    padding: 15px; /* Reduce padding to make it smaller */
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    
+    position: absolute;
+    top: 60%; /* Move it slightly lower */
+    left: 58%; /* Adjust to center it properly */
+    transform: translate(-50%, -50%);
+    
+    width: 30%; /* Reduce width for a smaller form */
+    min-width: 220px; /* Ensure it doesn't get too small */
+    font-size: 14px;
+
+}
+.add-student-form {
+    background: white;
+    padding: 8px; /* Reduce padding */
+    border-radius: 6px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    
+    width: 200px; /* Set smaller width */
+    font-size: 12px; /* Reduce font size */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px; /* Reduce spacing */
+}
+
+/* Reduce input field sizes */
+.add-student-form input {
+    width: 100%;
+    padding: 4px; /* Reduce padding */
+    font-size: 12px; /* Smaller text */
+}
+
+/* Smaller button */
+.add-student-form button {
+    padding: 5px 8px;
+    font-size: 12px;
+}
+
+
+
+
+
+
+
+h2 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #3498db;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px; /* Adjust spacing as needed */
+}
+
+/* Delete Button */
+.delete-btn, .edit-btn {
+    background-color: #e74c3c;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.delete-btn:hover {
+    background-color: #c0392b;
+}
+
+
+  
+
+/* Logout Button */
+.sidebar a:last-child {
+    background-color: #e74c3c;
+    text-align: center;
+}
+
+.sidebar a:last-child:hover {
+    background-color: #c0392b;
+}
+
+/* Welcome Text (Top Left) */
+.dashboard-header {
+    width: 100%;
+    text-align: left;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+}
+
+  /* Main container */
+.container {
+    display: flex;
+    justify-content: center; /* Centers the box horizontally */
+    align-items: center; /* Centers the box vertically */
+    height: 100vh; /* Full viewport height */
+}
+
+/* Box for filters */
+.filter-box {
+    position:absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Adds space between elements */
+    background: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Labels */
+.filter-box label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Dropdown and Input */
+.filter-box select,
+.filter-box input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 120px; /* Makes dropdown and input wider */
+}
+
+/* Button Styling */
+.filter-box button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+    font-size: 14px;
+}
+
+.filter-box button:hover {
+    background-color: #2980b9;
+}
+
+
+  
+  /* ✅ Tables & Lists */
+  h3, h4 {
+    margin-top: 20px;
+    color: #2c3e50;
+  }
+  
+  ul {
+    padding: 0;
+    list-style-type: none;
+  }
+  
+  ul li {
+    background: #ecf0f1;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 5px;
+  }
+
+  .filter-box {
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+
+
+
+
+
+
+  

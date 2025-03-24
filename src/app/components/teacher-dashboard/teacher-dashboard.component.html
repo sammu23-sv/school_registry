@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      width: 700px;
+      text-align: center;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    input, button, select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+    .btn-update {
+      background-color: #ffc107;
+      color: black;
+    }
+    .btn-delete {
+      background-color: #dc3545;
+      color: white;
+    }
+    .btn-update:hover {
+      background-color: #e0a800;
+    }
+    .btn-delete:hover {
+      background-color: #a71d2a;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Teacher Dashboard</h2>
+
+   
+
+    <hr>
+
+    <!-- Add Mark Form -->
+    <h3>Add New Mark</h3>
+    <form [formGroup]="marksForm" (ngSubmit)="addMark()">
+      <label>Student ID:</label>
+      <input type="text" formControlName="studentId" required>
+      <label>Subject:</label>
+      <select formControlName="subId" required>
+        <option value="">Select Subject</option>
+        <option *ngFor="let subject of subjects" [value]="subject.id">{{ subject.name }}</option>
+      </select>
+      <label>Month:</label>
+      <input type="number" formControlName="month" required>
+      <label>Year:</label>
+      <input type="number" formControlName="year" required>
+      <label>Score:</label>
+      <input type="number" formControlName="score" required>
+      <button type="submit" [disabled]="marksForm.invalid">Add Mark</button>
+    </form>
+
+    <hr>
+
+    <!-- View Marks -->
+    <label>Enter Student ID:</label>
+    <input type="text" [(ngModel)]="studentId">
+    <button (click)="loadMarks()">View Marks</button>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Student ID</th>
+          <th>Subject</th>
+          <th>Month</th>
+          <th>Year</th>
+          <th>Score</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let mark of marksList">
+          <td>{{ mark.studentId }}</td>
+          <td>{{ mark.subId }}</td>
+          <td>{{ mark.month }}</td>
+          <td>{{ mark.year }}</td>
+          <td>
+            <input type="number" [(ngModel)]="mark.score">
+            <button class="btn-update" (click)="updateMark(mark.studentId, mark.subId, mark.score)">Update</button>
+          </td>
+          <td>
+            <button class="btn-delete" (click)="deleteMark(mark.studentId, mark.subId)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

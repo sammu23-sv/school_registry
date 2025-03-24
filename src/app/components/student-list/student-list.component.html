@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      width: 600px;
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+    button {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 5px;
+    }
+    .btn-add {
+      background-color: #28a745;
+      color: white;
+    }
+    .btn-delete {
+      background-color: #dc3545;
+      color: white;
+    }
+    .btn-edit {
+      background-color: #ffc107;
+      color: black;
+    }
+    .btn-add:hover {
+      background-color: #218838;
+    }
+    .btn-delete:hover {
+      background-color: #a71d2a;
+    }
+    .btn-edit:hover {
+      background-color: #e0a800;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Student List</h2>
+    <button *ngIf="role === 'admin'" class="btn-add" (click)="addStudent()">Add Student</button>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th *ngIf="role === 'admin'">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of students">
+          <td>{{ student.student_id }}</td>
+          <td>{{ student.name }}</td>
+          <td *ngIf="role === 'admin'">
+            <button class="btn-delete" (click)="deleteStudent(student.student_id)">Delete</button>
+            <button class="btn-edit" (click)="editStudent(student.student_id)">Edit</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

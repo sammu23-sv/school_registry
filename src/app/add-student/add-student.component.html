@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="card">
+    <h2>Add Student</h2>
+    <form [formGroup]="studentForm" (ngSubmit)="addStudent()">
+      <div class="form-group">
+        <label for="name">Student Name:</label>
+        <input id="name" formControlName="name" required />
+      </div>
+      <button type="submit" [disabled]="studentForm.invalid">Add Student</button>
+    </form>
+  </div>
+</div>
